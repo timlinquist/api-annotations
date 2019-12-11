@@ -16,7 +16,7 @@
     </organization>
     <licenses>
         <license>
-            <name>CPAL v1.0</name>
+            <name>CPAL v1.0</name> 
             <url>http://www.mulesoft.com/CPAL</url>
         </license>
     </licenses>
