@@ -1,4 +1,5 @@
 
-Map pipelineParams = [ "mavenSettingsXmlId" : "mule-runtime-maven-settings-MuleSettings" ]
+Map pipelineParams = [ "mavenSettingsXmlId" : "mule-runtime-maven-settings-MuleSettings",
+                       "projectType" : "Runtime" ]
 
-runtimeProjectsBuild(pipelineParams)
+runtimeBuild(pipelineParams)
