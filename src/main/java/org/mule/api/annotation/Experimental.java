@@ -6,6 +6,8 @@
  */
 package org.mule.api.annotation;
 
+import static java.lang.annotation.ElementType.CONSTRUCTOR;
+import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.TYPE;
 
@@ -22,7 +24,7 @@ import java.lang.annotation.Target;
  * @since 1.0.2
  */
 @Documented
-@Target(value = {TYPE, METHOD})
+@Target(value = {TYPE, METHOD, FIELD, CONSTRUCTOR})
 public @interface Experimental {
 
 }
