@@ -7,24 +7,28 @@
 
 package org.mule.api.annotation;
 
+import static java.lang.annotation.ElementType.CONSTRUCTOR;
 import static java.lang.annotation.ElementType.TYPE;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Target;
 
 /**
- * Indicates that a class must not be instantiated by clients.
+ * Indicates that a client should not instantiate an annotated class, nor use an annotated constructor.
  * <p/>
  * As a class annotated with {@link NoInstantiate} must not be instantiated, the constructors parts of this class definition will
  * not be considered part of the API, so they can change without considering those changes as backwards incompatible. Note that
  * classes annotated with {@link NoInstantiate} will imply also the same constraints defined by {@link NoExtend}
+ * <p/>
+ * When this annotation is used in a constructor, it means that such constructor is not to be used since is not part of the API.
+ * However, the class may be instantiated through non annotated constructors or factory methods.
  * <p/>
  * WARNING: Ignoring the presence of this annotation can cause compile or runtime problems when a new version is available
  *
  * @since 1.0
  */
 @Documented
-@Target(value = {TYPE})
+@Target(value = {TYPE, CONSTRUCTOR})
 public @interface NoInstantiate {
 
 }
