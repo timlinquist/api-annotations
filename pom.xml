@@ -101,6 +101,7 @@
 
     <properties>
         <javaVersion>1.8</javaVersion>
+        <javaReleaseVersion>8</javaReleaseVersion>
         <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
         <xDocLint>-Xdoclint:none</xDocLint>
         <javaFormatter.plugin.version>2.14.0</javaFormatter.plugin.version>
@@ -120,11 +121,31 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.1</version>
+                    <version>3.11.0</version>
+                    <executions>
+                        <execution>
+                            <id>default-compile</id>
+                            <configuration>
+                                <release>11</release>
+                                <!-- no excludes: compile everything to ensure module-info contains right entries -->
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>base-compile</id>
+                            <goals>
+                                <goal>compile</goal>
+                            </goals>
+                            <configuration>
+                                <release>${javaReleaseVersion}</release>
+                                <!-- recompile everything for target VM except the module-info.java -->
+                                <excludes>
+                                    <exclude>module-info.java</exclude>
+                                </excludes>
+                            </configuration>
+                        </execution>
+                    </executions>
                     <configuration>
                         <encoding>ISO-8859-1</encoding>
-                        <source>${javaVersion}</source>
-                        <target>${javaVersion}</target>
                         <proc>none</proc>
                     </configuration>
                 </plugin>
@@ -143,7 +164,7 @@
                     </configuration>
                     <executions>
                         <execution>
-                            <phase>compile</phase>
+                            <phase>process-sources</phase>
                             <goals>
                                 <goal>${formatterGoal}</goal>
                             </goals>
@@ -190,7 +211,7 @@
                     </configuration>
                     <executions>
                         <execution>
-                            <phase>compile</phase>
+                            <phase>process-sources</phase>
                             <goals>
                                 <goal>check</goal>
                             </goals>
