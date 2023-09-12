@@ -141,9 +141,10 @@
                             </goals>
                             <configuration>
                                 <release>${javaReleaseVersion}</release>
-                                <!-- recompile everything for target VM except the module-info.java -->
+                                <!-- recompile everything for target VM except the module-info.java and jpms specific stuff -->
                                 <excludes>
                                     <exclude>module-info.java</exclude>
+                                    <exclude>org/mule/api/annotation/jpms/**</exclude>
                                 </excludes>
                             </configuration>
                         </execution>
@@ -152,6 +153,27 @@
                         <encoding>ISO-8859-1</encoding>
                         <proc>none</proc>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <executions>
+                        <execution>
+                            <!-- Add the java 11 sources to the source artifact -->
+                            <id>attach-java11-sources</id>
+                            <!-- This has to run after compilation so it doesn't interfere with it (compler has its own MRJAR configuration) -->
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>add-source</goal>
+                            </goals>
+                            <configuration>
+                                <sources>
+                                    <source>src/main/java11</source>
+                                </sources>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
                 <plugin>
                     <groupId>net.revelc.code.formatter</groupId>
