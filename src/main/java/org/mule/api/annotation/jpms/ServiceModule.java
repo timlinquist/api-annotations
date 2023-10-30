@@ -23,4 +23,12 @@ import java.lang.annotation.Target;
 @Target(MODULE)
 public @interface ServiceModule {
 
+  /**
+   * Add reflective visibility to the annotated service module. The module reading this annotation must have the wanted
+   * permissions itself, in order to properly propagate them to the annotated service module.
+   * 
+   * @return module and packages to open to the annotated service module.
+   */
+  RequiredOpens[] requiredOpens() default {};
+
 }
