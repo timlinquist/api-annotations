@@ -14,5 +14,6 @@ module org.mule.runtime.api.annotations {
 
   exports org.mule.api.annotation;
   exports org.mule.api.annotation.jpms;
+  exports org.mule.api.annotation.properties;
 
 }
