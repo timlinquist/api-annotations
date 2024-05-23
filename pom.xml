@@ -110,7 +110,6 @@
         <javaVersion>1.8</javaVersion>
         <javaReleaseVersion>8</javaReleaseVersion>
         <project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
-        <xDocLint>-Xdoclint:none</xDocLint>
         
         <licensePath>LICENSE_HEADER_CPAL.txt</licensePath>
         <licenseYear>2023</licenseYear>
@@ -185,17 +184,6 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>attach-javadocs</id>
-                            <goals>
-                                <goal>jar</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <additionalparam>${xDocLint}</additionalparam>
-                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
